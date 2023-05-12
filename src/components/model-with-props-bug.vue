@@ -3,6 +3,7 @@ import { computed, ref } from 'vue';
 
 const props = defineProps<{
   msg: T;
+  noGeneric?: string;
 }>();
 
 const newMsg = computed<T>(() => props.msg);
@@ -20,6 +21,8 @@ const count = defineModel<number>('count', {
 
 <template>
   <h1>{{ msg }}</h1>
+
+  <h2>{{ props.noGeneric? }}</h2>
 
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
