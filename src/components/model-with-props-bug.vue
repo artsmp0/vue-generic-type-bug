@@ -11,7 +11,11 @@ defineSlots<{
   default?: (props: { msg: T; count: number }) => any;
 }>();
 
-const count = ref(0);
+// 当使用 defineModel 时，在模板中访问 msg 报错
+const count = defineModel<number>('count', {
+  local: true,
+  default: 999,
+});
 </script>
 
 <template>
@@ -21,7 +25,7 @@ const count = ref(0);
     <button type="button" @click="count++">count is {{ count }}</button>
   </div>
   <div>
-    <slot name="default" :msg="msg" :count="count"> </slot>
+    <slot name="default" :msg="newMsg" :count="count"> </slot>
   </div>
 </template>
 
